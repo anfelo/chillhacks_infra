@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platform
+  template:
+    metadata:
+      labels:
+        app: platform
+    spec:
+      containers:
+        - name: platform
+          image: anfelo/chillhacks_platform
+          imagePullPolicy: Never
+          env:
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: platform-postgres-srv
+            - name: PGPORT
+              value: "5432"
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform-srv
+spec:
+  selector:
+    app: platform
+  ports:
+    - name: platform
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
