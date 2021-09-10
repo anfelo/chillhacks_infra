@@ -15,7 +15,6 @@ spec:
       containers:
         - name: platform
           image: anfelo/chillhacks_platform
-          imagePullPolicy: Never
           env:
             - name: PGUSER
               value: postgres
