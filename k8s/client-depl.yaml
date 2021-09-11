@@ -17,7 +17,7 @@ spec:
           image: anfelo/chillhacks_client
           env:
             - name: PLATFORM_BASE_URL
-              value: "http://www.chillhacks.com"
+              value: "http://www.chillhacks.com/api"
 ---
 apiVersion: v1
 kind: Service
