@@ -15,6 +15,9 @@ spec:
       containers:
         - name: client
           image: anfelo/chillhacks_client
+          env:
+            - name: PLATFORM_BASE_URL
+              value: "http://www.chillhacks.com"
 ---
 apiVersion: v1
 kind: Service
