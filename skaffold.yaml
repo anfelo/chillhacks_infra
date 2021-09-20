@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/platform-postgres-depl.yaml
+      - ./infra/k8s/platform-depl.yaml
+      - ./infra/k8s/client-depl.yaml
+      - ./infra/k8s-dev/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: anfelo/chillhacks_client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+          - src: '**/*.vue'
+            dest: .
+    - image: anfelo/chillhacks_platform
+      context: platform
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.go'
+            dest: .
