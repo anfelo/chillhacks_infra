@@ -3,29 +3,29 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/platform-postgres-depl.yaml
-      - ./infra/k8s/platform-depl.yaml
-      - ./infra/k8s/client-depl.yaml
-      - ./infra/k8s-dev/*
+      - ./k8s/platform-postgres-depl.yaml
+      - ./k8s/platform-depl.yaml
+      - ./k8s/client-depl.yaml
+      - ./k8s-dev/*
 build:
   local:
     push: false
   artifacts:
     - image: anfelo/chillhacks_client
-      context: client
+      context: ../client
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.ts'
+          - src: "**/*.ts"
             dest: .
-          - src: '**/*.vue'
+          - src: "**/*.vue"
             dest: .
     - image: anfelo/chillhacks_platform
-      context: platform
+      context: ../platform
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.go'
+          - src: "**/*.go"
             dest: .
