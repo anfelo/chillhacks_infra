@@ -29,6 +29,11 @@ spec:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
+            - name: JWTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwtsecret
+                  key: JWTSECRET
 ---
 apiVersion: v1
 kind: Service
