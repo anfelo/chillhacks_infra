@@ -36,6 +36,30 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
+    - host: www.chillhacks.com
+      http:
+        paths:
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: platform-srv
+                port:
+                  number: 3000
+          - path: /auth/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: platform-srv
+                port:
+                  number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
 ---
 apiVersion: v1
 kind: Service
