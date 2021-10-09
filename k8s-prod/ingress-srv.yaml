@@ -5,7 +5,13 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+  - hosts:
+    - www.chillhacks.com
+    - chillhacks.com
+    secretName: hello-kubernetes-tls
   rules:
     - host: www.chillhacks.com
       http:
