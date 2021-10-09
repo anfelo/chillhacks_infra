@@ -61,14 +61,14 @@ spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
-    - name: http
+    - name: proxy
       port: 80
       protocol: TCP
-      targetPort: http
-    - name: https
+      targetPort: proxy
+    - name: proxy-ssl
       port: 443
       protocol: TCP
-      targetPort: https
+      targetPort: proxy-ssl
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
