@@ -10,6 +10,7 @@ spec:
   tls:
   - hosts:
     - chillhacks.com
+    - www.chillhacks.com
     secretName: hello-kubernetes-tls
   rules:
     - host: chillhacks.com
