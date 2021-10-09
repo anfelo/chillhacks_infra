@@ -68,6 +68,7 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "www.chillhacks.com"
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
@@ -88,7 +89,7 @@ spec:
     - name: https
       port: 443
       protocol: TCP
-      targetPort: https
+      targetPort: 80
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
