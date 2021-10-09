@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - www.chillhacks.com
+    - chillhacks.com
     secretName: hello-kubernetes-tls
   rules:
-    - host: www.chillhacks.com
+    - host: chillhacks.com
       http:
         paths:
           - path: /api/?(.*)
@@ -42,7 +42,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.chillhacks.com"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "chillhacks.com"
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
