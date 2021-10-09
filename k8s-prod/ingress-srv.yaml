@@ -47,7 +47,7 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "false"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
@@ -61,14 +61,14 @@ spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
-    - name: proxy
+    - name: http
       port: 80
       protocol: TCP
-      targetPort: proxy
-    - name: proxy-ssl
+      targetPort: http
+    - name: https
       port: 443
       protocol: TCP
-      targetPort: proxy-ssl
+      targetPort: http
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
