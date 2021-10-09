@@ -37,29 +37,6 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
-      https:
-        paths:
-          - path: /api/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: platform-srv
-                port:
-                  number: 3000
-          - path: /auth/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: platform-srv
-                port:
-                  number: 3000
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: client-srv
-                port:
-                  number: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -89,7 +66,7 @@ spec:
     - name: https
       port: 443
       protocol: TCP
-      targetPort: 80
+      targetPort: http
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
