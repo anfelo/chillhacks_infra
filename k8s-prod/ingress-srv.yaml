@@ -8,10 +8,10 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-  - hosts:
-    - chillhacks.com
-    - www.chillhacks.com
-    secretName: hello-kubernetes-tls
+    - hosts:
+        - chillhacks.com
+        - www.chillhacks.com
+      secretName: hello-kubernetes-tls
   rules:
     - host: chillhacks.com
       http:
@@ -68,10 +68,6 @@ metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "chillhacks.com"
-    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "false"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
@@ -92,7 +88,7 @@ spec:
     - name: https
       port: 443
       protocol: TCP
-      targetPort: http
+      targetPort: https
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
