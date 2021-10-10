@@ -9,34 +9,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - chillhacks.com
         - www.chillhacks.com
       secretName: hello-kubernetes-tls
   rules:
-    - host: chillhacks.com
-      http:
-        paths:
-          - path: /api/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: platform-srv
-                port:
-                  number: 3000
-          - path: /auth/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: platform-srv
-                port:
-                  number: 3000
-          - path: /?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: client-srv
-                port:
-                  number: 3000
     - host: www.chillhacks.com
       http:
         paths:
@@ -67,7 +42,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "chillhacks.com"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.chillhacks.com"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
@@ -88,7 +63,7 @@ spec:
     - name: https
       port: 443
       protocol: TCP
-      targetPort: https
+      targetPort: http
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
